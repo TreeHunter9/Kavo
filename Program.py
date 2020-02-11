@@ -37,7 +37,7 @@ elif i == 3:
 
 elif i == 4:
     a = int(input())
-    if a > 100 and a < -100:
+    if a > 100 or a < -100:
         print("Число не входит в диапозон [-100; 100]")
     elif a < -50:
         print("Число меньше -50")
