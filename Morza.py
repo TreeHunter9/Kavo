@@ -12,7 +12,7 @@ def m(a):
             winsound.Beep(300, 70)
 
 while True:
-    line = input()
+    line = input().lower()
     morza = {
     'а':'.-',
     'б':'-..',
