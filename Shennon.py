@@ -14,7 +14,6 @@ def SummBin(a, l):
 class Cod:
     text = ''
     def Coder(self):
-        l = []
         sum = 0.0
         a1 = a2 = a3 = a4 = a5 = a6 = a7 = a8 = a9 = a10 = a11 = a12 = a13 = a14 = a15 = a16 = a17 = a18 = a19 = a20 = a21 = a22 = a23 = a24 = a25 = a26 = a27 = a28 = a29 = a30 = a31 = a32 = 0
         word_new = {}
@@ -68,19 +67,20 @@ class Cod:
             sum += word_new[k][0]
             word_new[k][3] = SummBin(word_new[k][2], word_new[k][1])
 
+        for w in self.text:
+            print(word_new[w][3], end='')
+
 
         for k,i in word_new.items():
             if word_new[k][0] != 0.0:
-                l.append(i)
                 print(k,i)
-
-        print(l)
-
-
 
     def Decoder(self):
         print(self.text)
+
 code = Cod()
-code.text = input()
+code.text = input().lower()
+code.text = code.text.replace(' ','')
 code.Coder()
-#print(''.join(format(ord(x), 'b') for x in code.text))
+print()
+print(''.join(format(ord(x), 'b') for x in code.text))
