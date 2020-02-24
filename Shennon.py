@@ -1,5 +1,6 @@
 import math as m
 import collections as coll
+import sys
 
 def SummBin(a, l):
     num = ""
@@ -70,17 +71,14 @@ class Cod:
         for w in self.text:
             print(word_new[w][3], end='')
 
-
-        for k,i in word_new.items():
-            if word_new[k][0] != 0.0:
-                print(k,i)
-
     def Decoder(self):
         print(self.text)
+
 
 code = Cod()
 code.text = input().lower()
 code.text = code.text.replace(' ','')
 code.Coder()
 print()
-print(''.join(format(ord(x), 'b') for x in code.text))
+l = (''.join(format(ord(x), 'b') for x in code.text))
+print("Данные сжимаются в ", len(l)/len((code.text)*8), " раз")
