@@ -1,6 +1,5 @@
 import math as m
 import collections as coll
-import sys
 
 def SummBin(a, l):
     num = ""
