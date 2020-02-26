@@ -13,10 +13,11 @@ def SummBin(a, l):
 
 class Cod:
     text = ''
+    code = ''
+    word_new = {}
     def Coder(self):
         sum = 0.0
         a1 = a2 = a3 = a4 = a5 = a6 = a7 = a8 = a9 = a10 = a11 = a12 = a13 = a14 = a15 = a16 = a17 = a18 = a19 = a20 = a21 = a22 = a23 = a24 = a25 = a26 = a27 = a28 = a29 = a30 = a31 = a32 = 0
-        word_new = {}
         word = {
         'а':[a1,0,0.0,''],
         'б':[a2,0,0.0,''],
@@ -60,18 +61,32 @@ class Cod:
                 word[k][0] /= len(self.text)
                 word[k][1] = m.ceil(m.log2(float(word[k][0]))*(-1))
 
-        word_new.update(coll.OrderedDict(sorted(word.items(),key = lambda i:i[1][0],reverse=-1)))
+        self.word_new.update(coll.OrderedDict(sorted(word.items(),key = lambda i:i[1][0],reverse=-1)))
 
-        for k in word_new.keys():
-            word_new[k][2] = sum
-            sum += word_new[k][0]
-            word_new[k][3] = SummBin(word_new[k][2], word_new[k][1])
+        for k in self.word_new.keys():
+            self.word_new[k][2] = sum
+            sum += self.word_new[k][0]
+            self.word_new[k][3] = SummBin(self.word_new[k][2], self.word_new[k][1])
 
         for w in self.text:
-            print(word_new[w][3], end='')
+            self.code += self.word_new[w][3]
+            print(self.word_new[w][3], end='')
 
     def Decoder(self):
-        print(self.text)
+        line = ''
+        deword = {}
+        for k,i in self.word_new.items():
+            deword[i[3]] = k
+        for i in self.code:
+            line += i
+            try:
+                deword[line]
+            except:
+                pass
+            else:
+                print(deword[line], end = '')
+                line = ''
+
 
 
 code = Cod()
@@ -81,3 +96,4 @@ code.Coder()
 print()
 l = (''.join(format(ord(x), 'b') for x in code.text))
 print("Данные сжимаются в ", len(l)/len((code.text)), " раз")
+code.Decoder()
