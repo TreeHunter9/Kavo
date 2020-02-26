@@ -17,7 +17,7 @@ class Cod:
     word_new = {}
     def Coder(self):
         sum = 0.0
-        a1 = a2 = a3 = a4 = a5 = a6 = a7 = a8 = a9 = a10 = a11 = a12 = a13 = a14 = a15 = a16 = a17 = a18 = a19 = a20 = a21 = a22 = a23 = a24 = a25 = a26 = a27 = a28 = a29 = a30 = a31 = a32 = 0
+        a1 = a2 = a3 = a4 = a5 = a6 = a7 = a8 = a9 = a10 = a11 = a12 = a13 = a14 = a15 = a16 = a17 = a18 = a19 = a20 = a21 = a22 = a23 = a24 = a25 = a26 = a27 = a28 = a29 = a30 = a31 = a32 = a33 = 0
         word = {
         'а':[a1,0,0.0,''],
         'б':[a2,0,0.0,''],
@@ -50,7 +50,8 @@ class Cod:
         'ь':[a29,0,0.0,''],
         'э':[a30,0,0.0,''],
         'ю':[a31,0,0.0,''],
-        'я':[a32,0,0.0,'']
+        'я':[a32,0,0.0,''],
+        ' ':[a33,0,0.0,''],
         }
 
         for word_mini in self.text:
@@ -91,7 +92,6 @@ class Cod:
 
 code = Cod()
 code.text = input().lower()
-code.text = code.text.replace(' ','')
 code.Coder()
 print()
 l = (''.join(format(ord(x), 'b') for x in code.text))
