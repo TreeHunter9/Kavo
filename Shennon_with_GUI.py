@@ -97,7 +97,7 @@ class Cod:
             except:
                 pass
             else:
-                print(deword[line], end = '')
+                Text2.insert('end', deword[line])
                 line = ''
 
 
@@ -115,14 +115,9 @@ code = Cod()
 
 def open_file():
     file_name = fd.askopenfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')))
-    with open(file_name, 'rb') as f:
-        word = pickle.load(f)
-        code.word_new.update(word)
     with open(file_name, 'r') as f:
-        Text1.delete(1.0, tk.END)
-        code.code = f.read()
-        code.Decoder()
-        Text1.insert(1.0,f.read())
+        Text1.delete(1.0, 'end')
+        Text1.insert(1.0, f.read())
 
 def make_code():
     Text2.delete(1.0, 'end')
@@ -131,9 +126,9 @@ def make_code():
 
 def save_code():
     new_file = fd.asksaveasfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')), defaultextension='.txt')
-    #with open(new_file, 'w') as f:
-       # f.write(Text2.get(1.0, 'end'))
-    with open(new_file, 'wb') as f:
+    with open(new_file, 'w') as f:
+        f.write(Text2.get(1.0, 'end'))
+    with open(new_file, 'ab') as f:
         pickle.dump(code.word_new, f)
         
 
