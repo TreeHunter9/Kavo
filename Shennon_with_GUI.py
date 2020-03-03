@@ -128,8 +128,17 @@ def save_code():
     new_file = fd.asksaveasfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')), defaultextension='.txt')
     with open(new_file, 'w') as f:
         f.write(Text2.get(1.0, 'end'))
-    with open(new_file, 'ab') as f:
+    new_file = fd.asksaveasfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')), defaultextension='.txt')
+    with open(new_file, 'wb') as f:
         pickle.dump(code.word_new, f)
+
+def decode_file():
+    file_name = fd.askopenfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')))
+    with open(file_name, 'rb') as f:
+        code.word_new = pickle.load(f)
+    code.Decoder()
+    
+        
         
 
 form = tk.Tk()
@@ -154,7 +163,10 @@ button_open.grid(row=2, column=0, pady=10)
 button_cod = tk.Button(form,text = 'Кодировать', height=2, width=15, command=make_code)
 button_cod.grid(row=2, column=3, pady=10)
 
-button_save = tk.Button(form,text = 'Сохранить код', height=2, width=15, command=save_code)
+button_save = tk.Button(form,text = 'Сохранить код\nи шифр', height=2, width=15, command=save_code)
 button_save.grid(row=2, column=2, pady=10)
+
+button_decode = tk.Button(form,text = 'Декодировать с \n помощью шифра', height=2, width=15, command=decode_file)
+button_decode.grid(row=1, column=2, pady=10)
 
 form.mainloop()
