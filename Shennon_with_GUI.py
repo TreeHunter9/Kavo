@@ -136,11 +136,10 @@ def decode_file():
     file_name = fd.askopenfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')))
     with open(file_name, 'rb') as f:
         code.word_new = pickle.load(f)
+    code.code = Text1.get(1.0, 'end')
     code.Decoder()
     
         
-        
-
 form = tk.Tk()
 form.wm_title('Алгоритм Шеннона')
 form.wm_resizable(width=False, height=False)
@@ -149,24 +148,24 @@ label1 = tk.Label(form, text='Текст который хотите закод�
 label1.grid(row=0, column=0)
 
 label2 = tk.Label(form, text='Код')
-label2.grid(row=0, column=3)
+label2.grid(row=0, column=2)
 
 Text1 = tk.Text(form, wrap=tk.WORD, height=17, width=60)
 Text1.grid(row=1, column=0)
 
 Text2 = tk.Text(form, wrap=tk.WORD, height=17, width=60)
-Text2.grid(row=1, column=3)
+Text2.grid(row=1, column=2)
 
 button_open = tk.Button(form,text='Открыть', height=2, width=15, command=open_file)
 button_open.grid(row=2, column=0, pady=10)
 
 button_cod = tk.Button(form,text = 'Кодировать', height=2, width=15, command=make_code)
-button_cod.grid(row=2, column=3, pady=10)
+button_cod.grid(row=2, column=2, pady=10)
 
 button_save = tk.Button(form,text = 'Сохранить код\nи шифр', height=2, width=15, command=save_code)
-button_save.grid(row=2, column=2, pady=10)
+button_save.grid(row=2, column=1, pady=10)
 
 button_decode = tk.Button(form,text = 'Декодировать с \n помощью шифра', height=2, width=15, command=decode_file)
-button_decode.grid(row=1, column=2, pady=10)
+button_decode.grid(row=1, column=1, pady=10)
 
 form.mainloop()
