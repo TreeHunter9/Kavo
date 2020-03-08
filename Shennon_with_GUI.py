@@ -116,7 +116,7 @@ code = Cod()
 
 def open_file():
     file_name = fd.askopenfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')))
-    with open(file_name, 'r') as f:
+    with open(file_name, 'r', encoding="utf8") as f:
         Text1.delete(1.0, 'end')
         Text1.insert(1.0, f.read())
 
