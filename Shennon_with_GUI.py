@@ -99,18 +99,7 @@ class Cod:
             else:
                 Text2.insert('end', deword[line])
                 print(deword[line])
-                line = ''
-
-
-'''
-code = Cod()
-code.text = input().lower()
-code.Coder()
-print()
-l = (''.join(format(ord(x), 'b') for x in code.text))
-print('Данные сжимаются в ', len(l)/len((code.text)), ' раз')
-code.Decoder()
-'''      
+                line = ''    
 
 code = Cod()
 
