@@ -90,7 +90,9 @@ class Cod:
         deword = {}
         for k,i in self.word_new.items():
             deword[i[3]] = k
-        for i in self.code:
+        temp = '0' + self.code
+        print(temp)
+        for i in temp:
             line += i
             try:
                 deword[line]
@@ -99,7 +101,8 @@ class Cod:
             else:
                 Text2.insert('end', deword[line])
                 print(deword[line])
-                line = ''    
+                line = ''  
+        print(deword)  
 
 code = Cod()
 
@@ -130,10 +133,9 @@ def decode_file():
     with open(file_name, 'rb') as f:
         temp_int = int.from_bytes(f.read(), byteorder='big')
         code.code = "{0:b}".format(temp_int)
-    #file_name = fd.askopenfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')))
-    #with open(file_name, 'rb') as f:
-        #code.word_new = pickle.load(f)
-    print(code.code)
+    file_name = fd.askopenfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')))
+    with open(file_name, 'rb') as f:
+        code.word_new = pickle.load(f)
     Text2.delete(1.0, 'end')
     code.Decoder()
     
