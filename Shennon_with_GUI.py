@@ -98,6 +98,7 @@ class Cod:
                 pass
             else:
                 Text2.insert('end', deword[line])
+                print(deword[line])
                 line = ''
 
 
@@ -126,17 +127,25 @@ def make_code():
 
 def save_code():
     new_file = fd.asksaveasfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')), defaultextension='.txt')
-    with open(new_file, 'w') as f:
-        f.write(Text2.get(1.0, 'end'))
+    temp_code = [int(code.code[x:x+8],2) for x in range(0, len(code.code), 8)]
+    temp_bytes = bytes(temp_code)
+    with open(new_file, 'wb') as f:
+        f.write(temp_bytes)
     new_file = fd.asksaveasfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')), defaultextension='.txt')
     with open(new_file, 'wb') as f:
         pickle.dump(code.word_new, f)
 
 def decode_file():
+    Text1.delete(1.0, 'end')
     file_name = fd.askopenfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')))
     with open(file_name, 'rb') as f:
-        code.word_new = pickle.load(f)
-    code.code = Text1.get(1.0, 'end')
+        temp_int = int.from_bytes(f.read(), byteorder='big')
+        code.code = "{0:b}".format(temp_int)
+    #file_name = fd.askopenfilename(filetypes=(('texts', '*.txt'), ('All files', '*.*')))
+    #with open(file_name, 'rb') as f:
+        #code.word_new = pickle.load(f)
+    print(code.code)
+    Text2.delete(1.0, 'end')
     code.Decoder()
     
         
