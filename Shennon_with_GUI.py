@@ -87,10 +87,30 @@ class Cod:
 
     def Decoder(self):
         line = ''
+        zero = ''
         deword = {}
         for k,i in self.word_new.items():
             deword[i[3]] = k
-        temp = '0' + self.code
+        for i in range(0,6):
+            l = ''
+            count = 0
+            for a in self.code:
+                if count <= 10:
+                    l += a
+                    count += 1
+                    try:
+                        deword[zero + l]
+                    except:
+                        pass
+                    else:
+                        l = ''
+                        break
+                else:
+                    break
+            if(l == ''):
+                break
+            zero += '0'        
+        temp = zero + self.code
         print(temp)
         for i in temp:
             line += i
