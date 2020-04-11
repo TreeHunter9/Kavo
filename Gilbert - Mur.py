@@ -46,7 +46,7 @@ class Cod:
             
 
 code = Cod()
-code.text = 'Спасибо'
+code.text = input()
 code.Coder()
 code.Decoder()
 s = 0.0
